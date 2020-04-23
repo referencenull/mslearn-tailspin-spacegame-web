@@ -52,6 +52,10 @@ steps:
     parameters:
       buildConfiguration: 'Release'
 
+- script: |
+      echo "##vso[task.prependpath]$HOME/.dotnet/tools"
+    displayName: 'Test code coverage report'
+
   - script: |
       ./reportgenerator -reports:$(Build.SourcesDirectory)/**/coverage.cobertura.xml -targetdir:$(Build.SourcesDirectory)/CodeCoverage -reporttypes:HtmlInline_AzurePipelines
     displayName: 'Create code coverage report'
